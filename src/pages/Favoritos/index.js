@@ -1,10 +1,12 @@
 import Banner from 'components/Banner'
 import Card from 'components/Card'
 import Titulo from 'components/Titulo'
+import {  useFavoritoContext } from 'Contextos/Favoritos'
 import styles from './Favoritoss.module.css'
 
 
 export default function Favoritos() {
+    const { favorito } = useFavoritoContext()
     return (
         <>
            <Banner imagem='favoritos' />
@@ -12,7 +14,9 @@ export default function Favoritos() {
                 <h1>Meus Favoritos</h1>
             </Titulo>
             <section className={styles.container}>
-                <Card />
+                { favorito.map((fav) => {
+                    return <Card {...fav} key={fav.id} />
+                })}
             </section>
         </>
     )
